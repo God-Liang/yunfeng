@@ -1,0 +1,14 @@
+{
+  "items": [{
+      "label_value": "1",
+      "label_name": "游泳"
+    },
+    {
+      "label_value": "2",
+      "label_name": "唱歌"
+    }
+  ],
+  "status": "success",
+  "code": 200,
+  "name": "hobby"
+}

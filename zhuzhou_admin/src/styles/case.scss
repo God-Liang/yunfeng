@@ -1,0 +1,32 @@
+.sectionBox{
+    padding-left: 10px;
+    padding-right: 25px;
+    background: #fff;
+    margin-bottom: 15px;
+    h2{
+        font-size: 18px;
+        font-weight: bold;
+        height: 60px;
+        line-height: 60px;
+        margin: 0;
+        padding-left: 15px;
+        border-bottom: 1px solid #434343;
+        // &::before{
+        //   content: '';
+        //   display: inline-block;
+        //   width: 6px;
+        //   height: 20px;
+        //   background-color: #eab83c;
+        //   vertical-align: middle;
+        //   margin-right: 15px;
+        //   margin-bottom: 2px;
+        // }
+        span{
+            color:#333333;
+        }
+    }
+    .box{
+        padding: 20px 10px;
+        color: #666;
+    }
+}

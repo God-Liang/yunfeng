@@ -1,0 +1,158 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: MicrosoftYaHei, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  max-height: 999999px;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+/* 设置HTML5元素为块 */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  max-height: 999999px;
+}
+
+/* 初始化 */
+body, div, ul, li, ol, h1, h2, h3, h4, h5, h6, input, textarea, select, p, dl, dt, dd, a, img, button, form, table, th, tr, td, tbody, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  margin: 0;
+  padding: 0;
+  max-height: 999999px;
+}
+
+em, i {
+  font-style: normal;
+}
+ul,li{
+  list-style-type: none;
+}
+
+/* 修改Vant默认样式 */
+.van-info {
+  background-color: #03A9AC;
+  top: -6px;
+}
+.van-submit-bar {
+  bottom: 50px;
+  padding-left: 20px;
+  .van-submit-bar__text {
+    color: #03A9AC;
+    .van-submit-bar__price {
+      color: #03A9AC;
+      font-weight: normal;
+      font-size: 16px;
+    }
+  }
+  .van-button--danger {
+    background-color: #03A9AC;
+    border-color: #03A9AC;
+  }
+}
+#lgFooter {
+  .van-tabbar {
+    box-shadow: 0px 0px 10px 2px rgba(3, 169, 172, 0.1);
+  }
+}
+// 修改默认加载效果
+.van-overlay {
+  background-color: rgba(255, 255, 255, 0);
+}
+.inventory .van-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+// 解决计步器不显示问题
+@media screen and (min-width: 320px) and (max-width: 360px) {
+  .van-stepper__minus,.van-stepper__plus {
+    width: 22px;
+    height: 22px;
+  }
+  .van-stepper__input {
+    width: 24px;
+    height: 20px;
+    font-size: 12px;
+  }
+  .van-stepper__minus::before, .van-stepper__plus::before {
+    width: 7px;
+    height: 1px;
+  }
+  .van-stepper__minus::after, .van-stepper__plus::after {
+    width: 1px;
+    height: 7px;
+  }
+}
+@media screen and (min-width: 540px) and (max-width: 768px) {
+  .van-stepper__minus,.van-stepper__plus {
+    width: 58px;
+    height: 58px;
+  }
+  .van-stepper__input {
+    width: 60px;
+    height: 56px;
+    font-size: 28px;
+  }
+  .van-stepper__minus::before, .van-stepper__plus::before {
+    width: 20px;
+    height: 1px;
+  }
+  .van-stepper__minus::after, .van-stepper__plus::after {
+    width: 1px;
+    height: 20px;
+  }
+}
