@@ -1,0 +1,198 @@
+<template>
+	<view class="lg-container">
+		<uni-nav-bar left-icon="back" title="临时随访病人" @clickLeft="onLeftTap" @clickRight="onRightTap">
+			<template v-slot:right="">
+				<image class="right_img" src="@/static/followUp/add.png" mode=""></image>
+			</template>
+		</uni-nav-bar>
+		<view class="patient_list">
+			<mescroll-uni ref="mescrollRef" @init="mescrollInit" :fixed="false" @down="downCallback" @emptyclick="onRightTap" @up="upCallback" :down="downOption" :up="upOption">
+				<view class="patient_item" v-for="(item, index) in dataList" :key="index">
+					<view class="patient_item_box" @tap="onJump('/pages/followUp/patientTemporaryDetails?patientId=' + item.patientId)">
+						<view class="patient_item_box_info">
+							<view class="patient_item_box_info_avatar">{{ item.patientName | interception }}</view>
+							<view class="patient_item_box_info_content">
+								<view class="patient_item_content_box fs24">
+									<text class="patient_item_content_box_name fs30">{{ item.patientName }}</text>
+									<text class="patient_item_content_box_age">{{ item.age || 0 }}岁</text>
+									<image v-if="item.sex === 1" class="patient_item_content_box_sex" src="@/static/team/woman.png" mode=""></image>
+									<image v-else class="patient_item_content_box_sex" src="@/static/team/man.png" mode=""></image>
+								</view>
+								<view class="patient_item_content_box fs24">住院号：{{ item.admissionNumber }}</view>
+							</view>
+						</view>
+						<view class="patient_item_box_operation" v-if="item.type === 1 && !item.isWeChatRead">{{ item.patientFormName }}：未填</view>
+						<view class="patient_item_box_operation" v-else-if="item.type === 1 && item.isWeChatRead">{{ item.patientFormName }}：已填</view>
+						<view class="patient_item_box_operation" v-else-if="item.type === 2 && !item.isWeChatRead">{{ item.patientFormName }}：未读</view>
+						<view class="patient_item_box_operation" v-else-if="item.type === 2 && item.isWeChatRead">{{ item.patientFormName }}：已读</view>
+						<view class="patient_item_box_operation">{{ item.patientFormName }}</view>
+					</view>
+				</view>
+			</mescroll-uni>
+		</view>
+	</view>
+</template>
+
+<script>
+import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins.js';
+import common from '@/mixins/common';
+import { mapGetters } from 'vuex';
+import { getList } from '@/api/followUp';
+export default {
+	mixins: [MescrollMixin, common],
+	computed: {
+		...mapGetters(['myInfo'])
+	},
+	data() {
+		return {
+			apiName: 'teamPatient/PatientFormPage',
+			mescroll: null, //mescroll实例对象 (此行可删,mixins已默认)
+			// 下拉刷新的常用配置
+			downOption: {
+				use: true, // 是否启用下拉刷新; 默认true
+				auto: true, // 是否在初始化完毕之后自动执行下拉刷新的回调; 默认true
+				native: false // 启用系统自带的下拉组件,默认false;仅mescroll-body生效,mescroll-uni无效(native: true, 则需在pages.json中配置"enablePullDownRefresh":true)
+			},
+			// 上拉加载的常用配置
+			upOption: {
+				use: true, // 是否启用上拉加载; 默认true
+				auto: true, // 是否在初始化完毕之后自动执行上拉加载的回调; 默认true
+				page: {
+					num: 0, // 当前页码,默认0,回调之前会加1,即callback(page)会从1开始
+					size: 10 // 每页数据的数量,默认10
+				},
+				textNoMore: '没有更多了',
+				noMoreSize: 5, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
+				empty: {
+					icon: '/static/followUp/temporaryNull.png',
+					tip: '暂无临时随访病人',
+					btnText: '新建临时随访'
+				}
+			},
+			// 列表数据
+			dataList: [],
+			total: 0,
+			keyWord: ''
+		};
+	},
+	onBackPress(options) {
+		if (options.from === 'navigateBack') {
+			return false;
+		}
+		this.onLeftTap();
+		return false;
+	},
+	methods: {
+		onLeftTap() {
+			this.$helper.toTab('/pages/tabBar/followUp');
+		},
+		onRightTap() {
+			this.$helper.to('/pages/followUp/temporaryPatient');
+		},
+		upCallback(page) {
+			let pageNum = page.num;
+			let pageSize = page.size;
+			const data = {
+				current: pageNum,
+				pageSize: pageSize,
+				name: this.keyWord,
+				doctorUserId: this.myInfo.id,
+				teamId: this.myInfo.doctor.doctorTeamId
+			};
+			getList(this.apiName, data, res => {
+				let curPageData = res.data.list;
+				let curPageLen = curPageData.length;
+				let totalSize = res.data.total;
+				this.total = res.data.total;
+				if (page.num == 1) this.dataList = [];
+				this.dataList = this.dataList.concat(curPageData);
+				this.mescroll.endBySize(curPageLen, totalSize);
+			});
+		}
+	}
+};
+</script>
+<style lang="scss" scoped>
+.lg-container {
+	.right_img {
+		width: 34rpx;
+		height: 34rpx;
+	}
+	.patient_list {
+		width: 100vw;
+		height: calc(100vh - 88rpx);
+		// #ifndef H5
+		height: calc(100vh - 136rpx);
+		// #endif
+		.patient_item {
+			background-color: #fff;
+			margin-bottom: 2rpx;
+			display: flex;
+			align-items: center;
+			padding: 32rpx 40rpx 22rpx;
+			box-sizing: border-box;
+			&.patient_item_acitve {
+				background-color: #e5e5e5;
+			}
+			&_box {
+				flex: 1;
+				&_info {
+					display: flex;
+					justify-content: space-between;
+					&_avatar {
+						width: 80rpx;
+						height: 80rpx;
+						line-height: 80rpx;
+						text-align: center;
+						border-radius: 50%;
+						color: #fff;
+						background-color: #03a9ac;
+					}
+					&_content {
+						flex: 1;
+						margin: 0 30rpx;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						.patient_item_content_box {
+							margin: 4rpx 0;
+							color: #888888;
+							&_name {
+								color: #333333;
+							}
+							&_age {
+								color: #333333;
+								margin: 0 20rpx;
+							}
+							&_sex {
+								width: 22rpx;
+								height: 22rpx;
+							}
+						}
+					}
+				}
+				&_operation {
+					color: #888888;
+					font-size: 24rpx;
+					padding-left: 110rpx;
+					margin-top: 6rpx;
+				}
+			}
+		}
+	}
+	.operationBox {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100vw;
+		height: 80rpx;
+		line-height: 80rpx;
+		background-color: #fff;
+		box-sizing: border-box;
+		background-color: #03a9ac;
+		color: #ffffff;
+		font-size: 30rpx;
+		text-align: center;
+	}
+}
+</style>

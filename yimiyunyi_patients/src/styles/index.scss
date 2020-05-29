@@ -1,0 +1,163 @@
+@import './variable.scss';
+@import './reset.scss';
+@import './utils.scss';
+
+/* 修改Vant默认样式 */
+.van-info {
+  background-color: $color-main;
+  top: -6px;
+}
+
+.van-submit-bar {
+  bottom: 50px;
+  padding-left: 20px;
+
+  .van-submit-bar__text {
+    color: $color-main;
+
+    .van-submit-bar__price {
+      color: $color-main;
+      font-weight: normal;
+      font-size: 16px;
+    }
+  }
+
+  .van-button--danger {
+    background-color: $color-main;
+    border-color: $color-main;
+  }
+}
+
+#lgFooter {
+  .van-tabbar {
+    box-shadow: 0px 0px 10px 2px rgba(3, 169, 172, 0.1);
+  }
+}
+.pr24 .van-field__control--right {
+  padding-right: 24px;
+}
+// 解决计步器不显示问题
+@media screen and (min-width: 320px) and (max-width: 360px) {
+
+  .van-stepper__minus,
+  .van-stepper__plus {
+    width: 22px;
+    height: 22px;
+  }
+
+  .van-stepper__input {
+    width: 24px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .van-stepper__minus::before,
+  .van-stepper__plus::before {
+    width: 7px;
+    height: 1px;
+  }
+
+  .van-stepper__minus::after,
+  .van-stepper__plus::after {
+    width: 1px;
+    height: 7px;
+  }
+}
+
+@media screen and (min-width: 540px) and (max-width: 768px) {
+
+  .van-stepper__minus,
+  .van-stepper__plus {
+    width: 58px;
+    height: 58px;
+  }
+
+  .van-stepper__input {
+    width: 60px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .van-stepper__minus::before,
+  .van-stepper__plus::before {
+    width: 20px;
+    height: 1px;
+  }
+
+  .van-stepper__minus::after,
+  .van-stepper__plus::after {
+    width: 1px;
+    height: 20px;
+  }
+}
+// vant默认样式(增加一层级)
+.lg-container {
+  width: 100vw;
+  min-height: 100vh;
+
+  // 输入框
+  .van-cell {
+    padding: 0 20px;
+    font-size: 13px;
+    color: #333333;
+    &:not(:last-child)::after {
+      left: 0;
+    }
+  }
+  .h50 {
+    height: 50px;
+    line-height: 50px;
+  }
+  .h40 {
+    height: 40px;
+    line-height: 40px;
+  }
+  .h60 {
+    height: 60px;
+    line-height: 60px;
+  }
+  // 通用按钮
+  .lg-save-btn {
+    width: 90%;
+    margin: 10px 5%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+  // 上传
+  .uploadStyle {
+    .van-uploader__wrapper {
+      .van-uploader__upload {
+        width: 70px;
+        height: 70px;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+}
+    }
+  }
+  // 确认取消
+  .van-picker__cancel,
+  .van-picker__confirm {
+    color: $color-main;
+  }
+  .required {
+    position: relative;
+    padding-left: 26px;
+    &::before {
+      position: absolute;
+      left: 20px;
+      top: 0px;
+      color: #ee0a24;
+      font-size: 12px;
+      content: "*";
+    }
+  }
+}
+.van-cell:not(:last-child):after {
+  border-bottom: 2px solid #ebedf0 !important;
+}

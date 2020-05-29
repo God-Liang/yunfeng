@@ -1,0 +1,183 @@
+@charset "utf-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 26rpx;
+	line-height: 1;
+}
+
+.lg-container {
+	width: 100vw;
+	height: 100vh;
+	overflow: auto;
+	box-sizing: border-box;
+	background-color: #f4f4f4;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.lg_icon {
+	color: #b9b9b9;
+	font-size: 28rpx;
+}
+.lg_empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #BCBCBC;
+	font-size: 26rpx;
+	margin-top: 100rpx;
+}
+.lg_main_btn {
+	background-color: #03A9AC;
+	width: 100rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 24rpx;
+	border-radius: 5rpx;
+}
+.w120 {
+	width: 240rpx;
+}
+
+.w160 {
+	width: 320rpx;
+}
+
+.w180 {
+	width: 360rpx;
+}
+
+.w200 {
+	width: 400rpx;
+}
+
+.w220 {
+	width: 440rpx;
+}
+
+.w240 {
+	width: 480rpx;
+}
+
+.fs30 {
+	font-size: 30rpx;
+}
+
+.fs28 {
+	font-size: 28rpx;
+}
+
+.fs26 {
+	font-size: 26rpx;
+}
+
+.fs24 {
+	font-size: 24rpx;
+}
+
+.fs22 {
+	font-size: 22rpx;
+}
+
+.fs20 {
+	font-size: 20rpx;
+}
+.ml20 {
+	margin-left: 20rpx;
+}
+.mr20 {
+	margin-right: 20rpx;
+}
+.mt20 {
+	margin-top: 20rpx;
+}
+.mb20 {
+	margin-bottom: 20rpx;
+}
+.ml10 {
+	margin-left: 10rpx;
+}
+.mr10 {
+	margin-right: 10rpx;
+}
+.mt10 {
+	margin-top: 10rpx;
+}
+.mb10 {
+	margin-bottom: 10rpx;
+}
+.colorMain {
+	color: #03A9AC;
+}
+
+.color333 {
+	color: #333333;
+}
+
+.color666 {
+	color: #666666;
+}
+
+.color888 {
+	color: #888888;
+}
+
+/* uni-app默认样式 */
+/* 进度条 */
+.uni-progress-inner-bar,
+.uni-progress-bar {
+	border-radius: 12rpx;
+}
+
+uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
+	border-color: #03A9AC;
+}
+
+/* 设置普通按钮 / 主按钮样式 */
+.ordinary,
+.primary {
+	border: none !important;
+	background: #eee;
+	color: #888;
+	font-size: 26rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+}
+
+.primary {
+	background: #03A9AC !important;
+	color: #fff !important;
+}
+
+uni-button:after {
+	border: none;
+}
+/* 宣教标签 */
+.xjLabel {
+	width: 80rpx;
+	height: 30rpx;
+	line-height: 30rpx;
+	border: 2rpx solid #FFBB3F;
+	color: #FFBB3F;
+	font-size: 20rpx;
+	text-align: center;
+	border-radius: 16rpx;
+}
+/* 量表标签 */
+.lbLabel {
+	width: 80rpx;
+	height: 30rpx;
+	line-height: 30rpx;
+	border: 2rpx solid #81D4D5;
+	color: #81D4D5;
+	font-size: 20rpx;
+	text-align: center;
+	border-radius:16rpx;
+}

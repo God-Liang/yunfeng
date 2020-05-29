@@ -1,0 +1,30 @@
+{
+  "id": "1554701",
+  "name": "云随访",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "933121",
+      "name": "搜索-互动",
+      "font_class": "sousuo-m",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "3053667",
+      "name": "业来业往_叉",
+      "font_class": "cha",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "3384224",
+      "name": "对 ",
+      "font_class": "dui",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    }
+  ]
+}

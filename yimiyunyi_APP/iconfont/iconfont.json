@@ -1,0 +1,79 @@
+{
+  "id": "1554701",
+  "name": "云随访",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "608352",
+      "name": "箭头",
+      "font_class": "jiantouarrow487",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "3509511",
+      "name": "运营",
+      "font_class": "yunying",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "4691500",
+      "name": "目录",
+      "font_class": "mulu",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "13607589",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "ea9d",
+      "unicode_decimal": 60061
+    },
+    {
+      "icon_id": "1166005",
+      "name": "首页",
+      "font_class": "iconfontzhizuobiaozhun023101",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "9328007",
+      "name": "报告管理",
+      "font_class": "baogaoguanli",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "9442577",
+      "name": "系统管理",
+      "font_class": "xitongguanli",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "933121",
+      "name": "搜索-互动",
+      "font_class": "sousuo-m",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "3053667",
+      "name": "业来业往_叉",
+      "font_class": "cha",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "3384224",
+      "name": "对 ",
+      "font_class": "dui",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    }
+  ]
+}

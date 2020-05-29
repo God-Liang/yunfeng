@@ -1,0 +1,219 @@
+<template>
+	<view class="lg-container">
+		<uni-nav-bar left-icon="back" title="选择患者" @clickLeft="onLeftTap"></uni-nav-bar>
+		<uni-search-bar placeholder="搜索患者姓名" @input="handleFilter"></uni-search-bar>
+		<view class="patient_list">
+			<mescroll-uni ref="mescrollRef" @init="mescrollInit" :fixed="false" @down="downCallback" @up="upCallback" :down="downOption" :up="upOption">
+				<view class="patient_item" :class="patientId === item.patientId ? 'patient_item_acitve' : ''" v-for="(item, index) in dataList" :key="item.id" @tap="handleChange(item)">
+					<view class="patient_item_box">
+						<view class="patient_item_box_info">
+							<view class="patient_item_box_info_avatar">{{ item.patientName | interception }}</view>
+							<view class="patient_item_box_info_content">
+								<view class="patient_item_content_box fs24">
+									<text class="patient_item_content_box_name fs30">{{ item.patientName }}</text>
+									<text class="patient_item_content_box_age">{{ item.age || 0 }}岁</text>
+									<image v-if="item.sex === 1" class="patient_item_content_box_sex" src="@/static/team/woman.png" mode=""></image>
+									<image v-else class="patient_item_content_box_sex" src="@/static/team/man.png" mode=""></image>
+								</view>
+								<view class="patient_item_content_box fs24">住院号：{{ item.admissionNumber }}</view>
+							</view>
+						</view>
+						<view class="patient_item_box_operation">颅内血肿清除术</view>
+					</view>
+				</view>
+			</mescroll-uni>
+		</view>
+		<view class="operationBox" @tap="onNext">
+			下一步
+		</view>
+	</view>
+</template>
+
+<script>
+import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins.js';
+import { mapGetters } from 'vuex';
+import { getList } from '@/api/followUp';
+export default {
+	mixins: [MescrollMixin],
+	computed: {
+		...mapGetters(['myInfo'])
+	},
+	data() {
+		return {
+			apiName: 'teamPatient/patientPage',
+			mescroll: null, //mescroll实例对象 (此行可删,mixins已默认)
+			// 下拉刷新的常用配置
+			downOption: {
+				use: true, // 是否启用下拉刷新; 默认true
+				auto: true, // 是否在初始化完毕之后自动执行下拉刷新的回调; 默认true
+				native: false // 启用系统自带的下拉组件,默认false;仅mescroll-body生效,mescroll-uni无效(native: true, 则需在pages.json中配置"enablePullDownRefresh":true)
+			},
+			// 上拉加载的常用配置
+			upOption: {
+				use: true, // 是否启用上拉加载; 默认true
+				auto: true, // 是否在初始化完毕之后自动执行上拉加载的回调; 默认true
+				page: {
+					num: 0, // 当前页码,默认0,回调之前会加1,即callback(page)会从1开始
+					size: 10 // 每页数据的数量,默认10
+				},
+				textNoMore: '没有更多了',
+				noMoreSize: 5, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
+				empty: {
+					icon: '/static/system/c_0.png',
+					tip: '暂无患者'
+				}
+			},
+			// 列表数据
+			dataList: [],
+			total: 0,
+			keyWord: '',
+			patientId: null,
+			patientName: '',
+			phone: ''
+		};
+	},
+	onShow() {
+		if (uni.getStorageSync('temporaryObj')) {
+			const temporaryObj = uni.getStorageSync('temporaryObj')
+			this.patientId = temporaryObj.patientId
+			this.patientName = temporaryObj.patientName
+			this.phone = temporaryObj.phone
+		}
+	},
+	methods: {
+		onLeftTap() {
+			uni.navigateBack({ delta: 1 });
+		},
+		upCallback(page) {
+			let pageNum = page.num;
+			let pageSize = page.size;
+			const data = {
+				current: pageNum,
+				pageSize: pageSize,
+				name: this.keyWord,
+				doctorUserId: this.myInfo.id,
+				teamId: this.myInfo.doctor.doctorTeamId
+			};
+			getList(this.apiName, data, res => {
+				let curPageData = res.data.list;
+				let curPageLen = curPageData.length;
+				let totalSize = res.data.total;
+				this.total = res.data.total;
+				if (page.num == 1) this.dataList = [];
+				this.dataList = this.dataList.concat(curPageData);
+				this.mescroll.endBySize(curPageLen, totalSize);
+			});
+		},
+		handleFilter(e) {
+			this.keyWord = e.value;
+			this.mescroll.resetUpScroll();
+		},
+		// 选择患者
+		handleChange(item) {
+			if (this.patientId === item.patientId) {
+				this.patientId = null
+				this.patientName = ''
+				this.phone = ''
+			} else {
+				this.patientId = item.patientId
+				this.patientName = item.patientName
+				this.phone = item.phone
+			}
+		},
+		// 下一步
+		onNext() {
+			if (!this.patientId) {
+				this.$helper.toast('none', '请选择患者')
+				return
+			}
+			const temporaryObj = {
+				patientId: this.patientId,
+				patientName: this.patientName,
+				phone: this.phone
+			}
+			uni.setStorageSync('temporaryObj', temporaryObj)
+			this.$helper.to('/pages/followUp/temporaryForm')
+		}
+	}
+};
+</script>
+<style lang="scss" scoped>
+.lg-container {
+	.patient_list {
+		width: 100vw;
+		height: calc(100vh - 268rpx);
+		// #ifndef H5
+		height: calc(100vh - 316rpx);
+		// #endif
+		.patient_item {
+			background-color: #fff;
+			margin-bottom: 2rpx;
+			display: flex;
+			align-items: center;
+			padding: 32rpx 40rpx 22rpx;
+			box-sizing: border-box;
+			&.patient_item_acitve {
+				background-color: #E5E5E5;
+			}
+			&_box {
+				flex: 1;
+				&_info {
+					display: flex;
+					justify-content: space-between;
+					&_avatar {
+						width: 80rpx;
+						height: 80rpx;
+						line-height: 80rpx;
+						text-align: center;
+						border-radius: 50%;
+						color: #fff;
+						background-color: #03a9ac;
+					}
+					&_content {
+						flex: 1;
+						margin: 0 30rpx;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						.patient_item_content_box {
+							margin: 4rpx 0;
+							color: #888888;
+							&_name {
+								color: #333333;
+							}
+							&_age {
+								color: #333333;
+								margin: 0 20rpx;
+							}
+							&_sex {
+								width: 22rpx;
+								height: 22rpx;
+							}
+						}
+					}
+				}
+				&_operation {
+					color: #888888;
+					font-size: 24rpx;
+					padding-left: 110rpx;
+					margin-top: 6rpx;
+				}
+			}
+		}
+	}
+	.operationBox {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100vw;
+		height: 80rpx;
+		line-height: 80rpx;
+		background-color: #fff;
+		box-sizing: border-box;
+		background-color: #03A9AC;
+		color: #FFFFFF;
+		font-size: 30rpx;
+		text-align: center;
+	}
+}
+</style>

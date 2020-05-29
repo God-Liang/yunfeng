@@ -1,0 +1,301 @@
+{
+	"pages": [
+	// login、register
+	{
+		"path": "pages/login/index"
+	},
+	{
+		"path": "pages/register/index"
+	},
+	{
+		"path": "pages/register/agreement"
+	},
+	{
+		"path": "pages/forgotPassword/index"
+	},
+	// 环信即时通讯
+	{
+		"path": "pages/chatroom/index",
+		"style": {
+			"navigationBarTitleText": "单聊",
+			"navigationStyle": "default",
+			"navigationBarBackgroundColor": "#03a9ac"
+		}
+	},
+	{
+		"path": "pages/groupChatRoom/index",
+		"style": {
+			"navigationBarTitleText": "群聊",
+			"navigationStyle": "default",
+			"navigationBarBackgroundColor": "#03a9ac"
+		}
+	},
+	// tabBar
+	{
+		"path": "pages/tabBar/mine"
+	},
+	{
+		"path": "pages/tabBar/team",
+		"style": {
+			"enablePullDownRefresh": true,
+			"app-plus": {
+				"pullToRefresh": {
+					"color": "#03A9AC",
+					"height": "100px"
+				}
+			}
+		}
+	},
+	{
+		"path": "pages/tabBar/followUp"
+	},
+	{
+		"path": "pages/tabBar/message"
+	},
+	// components
+	{
+		"path": "pages/components/submitStatus"
+	},
+	{
+		"path": "pages/components/notNetwork"
+	},
+	{
+		"path": "pages/components/details",
+		"style": {
+			"navigationBarTitleText": "加载中...",
+			"navigationStyle": "default",
+			"navigationBarBackgroundColor": "#03a9ac"
+		}
+	},
+	// mine
+	{
+		"path": "pages/mine/aboutUs"
+	},
+	{
+		"path": "pages/mine/amendIntro"
+	},
+	{
+		"path": "pages/mine/amendPass"
+	},
+	{
+		"path": "pages/mine/amendPhone"
+	},
+	{
+		"path": "pages/mine/certificate"
+	},
+	{
+		"path": "pages/mine/homeInfo"
+	},
+	{
+		"path": "pages/mine/homepage"
+	},
+	{
+		"path": "pages/mine/myDynamic"
+	},
+	{
+		"path": "pages/mine/practicePlace"
+	},
+	{
+		"path": "pages/mine/settting"
+	},
+	{
+		"path": "pages/mine/service"
+	},
+	{
+		"path": "pages/mine/userInfo"
+	},
+	// attestation
+	{
+		"path": "pages/mine/attestation/attestationOne"
+	},
+	{
+		"path": "pages/mine/attestation/attestationTwo"
+	},
+	{
+		"path": "pages/mine/attestation/attestationThree"
+	},
+	{
+		"path": "pages/mine/attestation/attestationSubmit",
+		"style": {
+			"enablePullDownRefresh": true,
+			"app-plus": {
+				"pullToRefresh": {
+					"color": "#03A9AC",
+					"height": "100px"
+				}
+			}
+		}
+	},
+	{
+		"path": "pages/mine/attestation/attestationStatus"
+	},
+	{
+		"path": "pages/mine/attestation/attestationInfo"
+	},
+	{
+		"path": "pages/mine/attestation/attestationExplain"
+	},
+	// message
+	{
+		"path": "pages/message/newPatientMesssage"
+	},
+	{
+		"path": "pages/message/systemMessage"
+	},
+	{
+		"path": "pages/message/teamMessage"
+	},
+	{
+		"path": "pages/message/followupMessage"
+	},
+	// team
+	{
+		"path": "pages/team/invite"
+	},
+	{
+		"path": "pages/team/invite_qrcode"
+	},
+	{
+		"path": "pages/team/invite_hos"
+	},
+	{
+		"path": "pages/team/teamMember"
+	},
+	{
+		"path": "pages/team/teamMemberInfo"
+	},
+	{
+		"path": "pages/team/teamExit"
+	},
+	{
+		"path": "pages/team/selectDoctor"
+	},
+	{
+		"path": "pages/team/teamHomePage"
+	},
+	{
+		"path": "pages/team/teamInfo"
+	},
+	{
+		"path": "pages/team/teamAmend"
+	},
+	{
+		"path": "pages/team/teamAmendIntro"
+	},
+	{
+		"path": "pages/team/newMember"
+	},
+	{
+		"path": "pages/team/teamPatients"
+	},
+	{
+		"path": "pages/team/memberExit"
+	},
+	{
+		"path": "pages/team/memberExitTwo"
+	},
+	{
+		"path": "pages/team/memberExitThree"
+	},
+	{
+		"path": "pages/team/followupDetails"
+	},
+	{
+		"path": "pages/team/createTeam"
+	},
+	{
+		"path": "pages/team/inviteJoin"
+	},
+	{
+		"path": "pages/team/teamQrcode"
+	},
+	// followUp
+	{
+		"path": "pages/followUp/newPlanCard"
+	},
+	{
+		"path": "pages/followUp/newPlanPatient"
+	},
+	{
+		"path": "pages/followUp/newPlanSolution"
+	},
+	{
+		"path": "pages/followUp/gauges"
+	},
+	{
+		"path": "pages/followUp/temporary"
+	},
+	{
+		"path": "pages/followUp/temporaryPatient"
+	},
+	{
+		"path": "pages/followUp/temporaryForm"
+	},
+	{
+		"path": "pages/followUp/mySolution"
+	},
+	{
+		"path": "pages/followUp/solutionDetail"
+	},
+	{
+		"path": "pages/followUp/planDetail"
+	},
+	{
+		"path": "pages/followUp/myPatients"
+	},
+	{
+		"path": "pages/followUp/patientDetails"
+	},
+	{
+		"path": "pages/followUp/perfectPatientInfo"
+	},
+	{
+		"path": "pages/followUp/patientTemporaryDetails"
+	},
+	{
+		"path": "pages/followUp/patientNew"
+	},
+	{
+		"path": "pages/followUp/patientTemporary"
+	}
+	],
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "依米云医",
+		"navigationBarBackgroundColor": "#03A9AC",
+		"backgroundColor": "#FFFFFF",
+		"app-plus": {
+			"animationType": "slide-in-right"
+		}
+	},
+	"tabBar": {
+		"color": "#BCBCBC",
+		"selectedColor": "#03A9AC",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/tabBar/message",
+				"iconPath": "/static/tabBar/info.png",
+				"selectedIconPath": "/static/tabBar/info_ed.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/tabBar/followUp",
+				"iconPath": "/static/tabBar/followup.png",
+				"selectedIconPath": "/static/tabBar/followup_ed.png",
+				"text": "随访"
+			}, {
+				"pagePath": "pages/tabBar/team",
+				"iconPath": "/static/tabBar/team.png",
+				"selectedIconPath": "/static/tabBar/team_ed.png",
+				"text": "团队"
+			}, {
+				"pagePath": "pages/tabBar/mine",
+				"iconPath": "/static/tabBar/mine.png",
+				"selectedIconPath": "/static/tabBar/mine_ed.png",
+				"text": "我的"
+			}
+		]
+	}
+}
